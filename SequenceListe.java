@@ -1,7 +1,3 @@
-class Maillon{
-	int valeur;
-	Maillon chaine;
-}
 
 
 class SequenceListe{
@@ -9,7 +5,7 @@ class SequenceListe{
 	Maillon queue;
 
 	public void insereTete(int element){
-		Maillon nouvelletete = new Maillon();
+		Maillon nouvelletete = new Maillon(element, this.tete);
 		nouvelletete.valeur = element;
 		nouvelletete.chaine = this.tete;
 		if (this.tete == null){
