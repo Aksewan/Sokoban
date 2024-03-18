@@ -14,10 +14,10 @@ public class SequenceTableau<E>{
 			ArrayList<E> nouveau = new ArrayList<E>(elements.size()*2);
 			int fin = Math.min(debut+taille, elements.size());
 			for (int i=debut; i<fin; i++)
-				nouveau.set(i,elements.elementData(i));
+				nouveau.set(i,elements.get(i));
 			fin = (debut+taille)-elements.size();
 			for (int i=0; i<fin; i++) {
-				nouveau.set(i+elements.size(),elements.elementData(i));
+				nouveau.set(i+elements.size(),elements.get(i));
 			}
 			elements = nouveau;
 		}
@@ -42,7 +42,7 @@ public class SequenceTableau<E>{
 	public E extraitTete() {
 		if (taille == 0)
 			throw new RuntimeException("Sequence vide");
-		E resultat = elements.elementData(debut);
+		E resultat = elements.get(debut);
 		taille--;
 		debut = (debut+1)%elements.size();
 		return resultat;
@@ -56,10 +56,10 @@ public class SequenceTableau<E>{
 		String resultat = "[ ";
 		int fin = Math.min(debut+taille, elements.size());
 		for (int i=debut; i<fin; i++)
-			resultat += elements[i] + " ";
+			resultat += elements.get(i) + " ";
 		fin = (debut+taille)-elements.size();
 		for (int i=0; i<fin; i++)
-			resultat += elements[i] + " ";
+			resultat += elements.get(i) + " ";
 		resultat += "]";
 		return resultat;
 	}

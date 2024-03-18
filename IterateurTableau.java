@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class IterateurTableau<E> implements Iterateur<E> {
     int curseur, dernier;
-    E[] tab;
+    ArrayList<E> tab;
     boolean suppr;
     IterateurTableau(SequenceTableau<E> sequence){
         this.curseur = sequence.debut;
@@ -17,14 +19,14 @@ public class IterateurTableau<E> implements Iterateur<E> {
     public E prochain(){
         curseur +=1;
         suppr = true;
-        return tab[curseur-1];
+        return tab.get(curseur-1);
     }
     
     @Override
     public void supprime(){
         if(suppr){
             for(int i=this.curseur; i<=dernier; i++){
-                tab[i-1] = tab[i];
+                tab.set(i-1,tab.get(i));
             }
             dernier -= 1;
         }
