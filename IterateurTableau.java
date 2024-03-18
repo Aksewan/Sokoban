@@ -1,8 +1,8 @@
-public class IterateurTableau implements Iterateur {
+public class IterateurTableau<E> implements Iterateur<E> {
     int curseur, dernier;
-    int[] tab;
+    E[] tab;
     boolean suppr;
-    IterateurTableau(SequenceTableau sequence){
+    IterateurTableau(SequenceTableau<E> sequence){
         this.curseur = sequence.debut;
         this.dernier = sequence.taille;
         tab = sequence.elements;
@@ -14,7 +14,7 @@ public class IterateurTableau implements Iterateur {
     }
 
     @Override
-    public int prochain(){
+    public E prochain(){
         curseur +=1;
         suppr = true;
         return tab[curseur-1];

@@ -1,5 +1,3 @@
-import java.io.PrintStream;
-
 class test_SequenceListe{
 	public static void main(String[] args){
 		SequenceListe test = new SequenceListe();

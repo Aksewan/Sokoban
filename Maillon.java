@@ -1,9 +1,9 @@
-public class Maillon{
-	int valeur;
-	Maillon chaine;
+public class Maillon<E>{
+	E valeur;
+	Maillon<E> chaine;
 
 
-    Maillon(int element, Maillon m){
+    Maillon(E element, Maillon<E> m){
         this.valeur = element;
         this.chaine = m;
     }

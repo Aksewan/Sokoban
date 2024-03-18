@@ -1,48 +1,50 @@
-public class SequenceTableau{
-	int [] elements;
+import java.util.ArrayList;
+
+public class SequenceTableau<E>{
+	ArrayList<E> elements;
 	int debut, taille;
 
 	SequenceTableau() {
-		elements = new int[1];
+		elements = new ArrayList<E>(1);
 	}
 
 	private void redimensionne() {
-		if (taille >= elements.length) {
-			System.out.println("Redimensionne de " + elements.length + " à " + elements.length*2);
-			int [] nouveau = new int[elements.length*2];
-			int fin = Math.min(debut+taille, elements.length);
+		if (taille >= elements.size()) {
+			System.out.println("Redimensionne de " + elements.size() + " à " + elements.size()*2);
+			ArrayList<E> nouveau = new ArrayList<E>(elements.size()*2);
+			int fin = Math.min(debut+taille, elements.size());
 			for (int i=debut; i<fin; i++)
-				nouveau[i] = elements[i];
-			fin = (debut+taille)-elements.length;
+				nouveau.set(i,elements.elementData(i));
+			fin = (debut+taille)-elements.size();
 			for (int i=0; i<fin; i++) {
-				nouveau[i+elements.length] = elements[i];
+				nouveau.set(i+elements.size(),elements.elementData(i));
 			}
 			elements = nouveau;
 		}
 	}
 
-	public void insereTete(int element) {
+	public void insereTete(E element) {
 		redimensionne();
 		debut--;
 		if (debut < 0)
-			debut += elements.length;
-		elements[debut] = element;
+			debut += elements.size();
+		elements.set(debut,element);
 		taille++;
 	}
 
-	public void insereQueue(int element) {
+	public void insereQueue(E element) {
 		redimensionne();
-		int position = (debut+taille)%elements.length;
-		elements[position] = element;
+		int position = (debut+taille)%elements.size();
+		elements.set(position,element);
 		taille++;
 	}
 
-	public int extraitTete() {
+	public E extraitTete() {
 		if (taille == 0)
 			throw new RuntimeException("Sequence vide");
-		int resultat = elements[debut];
+		E resultat = elements.elementData(debut);
 		taille--;
-		debut = (debut+1)%elements.length;
+		debut = (debut+1)%elements.size();
 		return resultat;
 	}
 
@@ -52,17 +54,17 @@ public class SequenceTableau{
 
 	public String toString() {
 		String resultat = "[ ";
-		int fin = Math.min(debut+taille, elements.length);
+		int fin = Math.min(debut+taille, elements.size());
 		for (int i=debut; i<fin; i++)
 			resultat += elements[i] + " ";
-		fin = (debut+taille)-elements.length;
+		fin = (debut+taille)-elements.size();
 		for (int i=0; i<fin; i++)
 			resultat += elements[i] + " ";
 		resultat += "]";
 		return resultat;
 	}
 
-    public Iterateur iterateur(){
-        return new IterateurTableau(this);
+    public Iterateur<E> iterateur(){
+        return new IterateurTableau<E>(this);
     }
 }

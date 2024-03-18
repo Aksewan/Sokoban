@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 class Niveau{
     int nb_lignes;
     int nb_colonnes;

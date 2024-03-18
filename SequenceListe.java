@@ -1,13 +1,11 @@
 
 
-class SequenceListe{
-	Maillon tete;
-	Maillon queue;
+class SequenceListe<E>{
+	Maillon<E> tete;
+	Maillon<E> queue;
 
-	public void insereTete(int element){
-		Maillon nouvelletete = new Maillon(element, this.tete);
-		nouvelletete.valeur = element;
-		nouvelletete.chaine = this.tete;
+	public void insereTete(E element){
+		Maillon<E> nouvelletete = new Maillon<E>(element, this.tete);
 		if (this.tete == null){
 			this.tete = nouvelletete;
 			this.queue = nouvelletete;
@@ -17,10 +15,8 @@ class SequenceListe{
 		}
 	}
 
-	public void insereQueue(int element){
-		Maillon nouvellequeue = new Maillon();
-		nouvellequeue.valeur = element;
-		nouvellequeue.chaine = null;
+	public void insereQueue(E element){
+		Maillon<E> nouvellequeue = new Maillon<E>(element, null);
 		if(this.tete == null){
 			this.tete = nouvellequeue;
 			this.queue = nouvellequeue;
@@ -31,11 +27,11 @@ class SequenceListe{
 		}
 	}
 
-	int extraitTete(){
+	E extraitTete(){
 		if (this.estVide()){
 			throw new RuntimeException("Sequence vide");
 		}
-		int resultat = this.tete.valeur;
+		E resultat = this.tete.valeur;
 		this.tete = this.tete.chaine;
 		return resultat;
 	}
@@ -46,7 +42,7 @@ class SequenceListe{
 
 	public String toString(){
 		String resultat = "[ ";
-		Maillon courant = tete;
+		Maillon<E> courant = tete;
 		while (courant != null) {
 			resultat += courant.valeur + " ";
 			courant = courant.chaine;

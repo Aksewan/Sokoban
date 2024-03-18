@@ -1,10 +1,5 @@
-public interface Iterateur {
-    int curseur;
-    iterateur(){
-        this.curseur = 0;
-    }
-
+public interface Iterateur<E> {
     public boolean aProchain();
-    public int prochain();
+    public E prochain();
     public void supprime();
 }

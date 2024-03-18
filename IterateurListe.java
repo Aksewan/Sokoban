@@ -1,9 +1,9 @@
-class IterateurListe implements Iterateur{
-    Maillon courant, precedent, arrierePrecedent;
-    SequenceListe s;
+class IterateurListe<E> implements Iterateur<E>{
+    Maillon<E> courant, precedent, arrierePrecedent;
+    SequenceListe<E> s;
     boolean suppr;
 
-    IterateurListe(SequenceListe l){
+    IterateurListe(SequenceListe<E> l){
         this.courant = l.tete;
         this.s = l;
     }
@@ -14,8 +14,8 @@ class IterateurListe implements Iterateur{
     }
 
     @Override
-    public int prochain(){
-        int res = this.courant.valeur;
+    public E prochain(){
+        E res = this.courant.valeur;
         this.arrierePrecedent = this.precedent;
         this.precedent = this.courant;
         this.courant = this.courant.chaine;
